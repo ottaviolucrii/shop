@@ -28,7 +28,7 @@ class ProductItem extends StatelessWidget {
         footer: GridTileBar(
           backgroundColor: Colors.black87,
           title: Text(
-            product.title,
+            product.name,
             textAlign: TextAlign.center,
           ),
           leading: Consumer<Product>(
