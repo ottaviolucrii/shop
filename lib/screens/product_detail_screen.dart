@@ -12,6 +12,7 @@ class ProductDetailScreen extends StatelessWidget {
     final Product product = ModalRoute.of(context)!.settings.arguments as Product;
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           product.name,
           style: TextStyle(

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:shop/componets/badgee.dart';
 import 'package:shop/componets/product_grid.dart';
+import 'package:shop/models/cart.dart';
 import 'package:shop/models/product_list.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/utils/app_routes.dart';
 
 enum FilterOptions {
-    Favorites,
-    All,
-  }
+  Favorites,
+  All,
+}
 
 class ProductOverviewScreen extends StatelessWidget {
   ProductOverviewScreen({super.key});
@@ -16,6 +19,7 @@ class ProductOverviewScreen extends StatelessWidget {
     final provider = Provider.of<ProductList>(context);
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           'MyShop',
           style: TextStyle(
@@ -45,11 +49,22 @@ class ProductOverviewScreen extends StatelessWidget {
               }
             },
           ),
+          Consumer<Cart>(
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(AppRoutes.CART);
+              },
+              icon: Icon(Icons.shopping_cart),
+              color: Colors.white,
+            ),
+              builder: (ctx, cart, child) => Badgee(
+                value: cart.itemCount.toString(),
+                child: child!,
+            ),
+          ),
         ],
       ),
       body: ProductGrid(),
     );
   }
 }
-
-
