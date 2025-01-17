@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/componets/cart_item.dart';
 import 'package:shop/models/cart.dart';
 
 class CartScreen extends StatelessWidget {
@@ -8,6 +9,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Cart cart = Provider.of(context);
+    final items = cart.items.values.toList();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -24,23 +26,41 @@ class CartScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Total',
-                      style: TextStyle(
-                        fontSize: 20,
-                      )),
+                  Text(
+                    'Total',
+                    style: TextStyle(fontSize: 20),
+                  ),
                   Chip(
-                    label: Text('R\$${cart.totalAmount}', style: TextStyle(color: Theme.of(context).colorScheme.primary)),
+                    label: Text(
+                      'R\$${cart.totalAmount.toStringAsFixed(2)}',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
                   ),
                   TextButton(
-                    child: Text('COMPRAR', style: TextStyle(color: Theme.of(context).colorScheme.secondary)),
+                    child: Text(
+                      'COMPRAR',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+                    ),
                     style: TextButton.styleFrom(
-                      textStyle: TextStyle(color: Theme.of(context).colorScheme.secondary),
+                      textStyle: TextStyle(
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
                       backgroundColor: Theme.of(context).colorScheme.primary,
                     ),
                     onPressed: () {},
-                  ),   
+                  ),
                 ],
               ),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: items.length,
+              itemBuilder: (ctx, i) => CartItemWidget(cartItem: items[i]),
             ),
           ),
         ],
