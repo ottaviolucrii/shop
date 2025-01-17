@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop/componets/app_drawer.dart';
 import 'package:shop/componets/badgee.dart';
 import 'package:shop/componets/product_grid.dart';
 import 'package:shop/models/cart.dart';
@@ -19,6 +20,7 @@ class ProductOverviewScreen extends StatelessWidget {
     final provider = Provider.of<ProductList>(context);
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
         title: Text(
           'MyShop',
@@ -57,14 +59,15 @@ class ProductOverviewScreen extends StatelessWidget {
               icon: Icon(Icons.shopping_cart),
               color: Colors.white,
             ),
-              builder: (ctx, cart, child) => Badgee(
-                value: cart.itemCount.toString(),
-                child: child!,
+            builder: (ctx, cart, child) => Badgee(
+              value: cart.itemCount.toString(),
+              child: child!,
             ),
           ),
         ],
       ),
       body: ProductGrid(),
+      drawer: AppDrawer(),
     );
   }
 }
