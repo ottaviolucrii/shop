@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/componets/cart_item.dart';
 import 'package:shop/models/cart.dart';
+import 'package:shop/models/order_list.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -51,7 +52,10 @@ class CartScreen extends StatelessWidget {
                       ),
                       backgroundColor: Theme.of(context).colorScheme.primary,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Provider.of<OrderList>(context, listen : false).addOrder(cart);
+                      cart.clearList();
+                    },
                   ),
                 ],
               ),
