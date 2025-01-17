@@ -14,7 +14,7 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Carrinho', style: TextStyle(color: Colors.white)),
+        title: Text('Cart', style: TextStyle(color: Colors.white)),
         backgroundColor: Theme.of(context).colorScheme.primary,
         iconTheme: IconThemeData(color: Colors.white),
       ),
@@ -41,7 +41,7 @@ class CartScreen extends StatelessWidget {
                   ),
                   TextButton(
                     child: Text(
-                      'COMPRAR',
+                      'BUY',
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.secondary,
                       ),
